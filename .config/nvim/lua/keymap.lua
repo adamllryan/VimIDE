@@ -25,14 +25,19 @@ map("n", "<C-->", function()
     change_scale_factor(0.9)
 end, "Decrease scale factor")
 
-map("n", "<leader>ga", "<cmd>Git add %<cr>", "Stage the current file")
-map("n", "<leader>gb", "<cmd>Git blame<cr>", "Show the blame")
-
-map({ "n", "v" }, "<tab>", "<cmd>Neotree toggle float last<cr>", "Toggle file explorer")
+map({ "n", "v" }, "<tab>", "<cmd>Neotree toggle left last<cr>", "Toggle file explorer")
 
 map("n", "t", "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle terminal")
 map("t", "<esc>", "<C-\\><C-n>", "Exit terminal mode")
 map({ "t", "n" }, "<C-\\>", "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal")
+
+map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
+map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
+map("n", "<C-k>", "<C-w><C-k>", "Navigate windows up")
+map("n", "<C-l>", "<C-w><C-l>", "Navigate windows to the right")
+
+map("n", "<S-l>", ":bnext<CR>", "Next tab")
+map("n", "<S-h>", ":bprevious<CR>", "Previous tab")
 
 -- experimental
 
