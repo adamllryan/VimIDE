@@ -8,10 +8,17 @@ local function get_if_available(names)
 	return "default"
 end
 
-local M = {}
-
-M.set_color = function(schemes)
+local function set_color(schemes)
 	vim.cmd.colorscheme(get_if_available(schemes))
 end
 
-return M
+-- Set colorscheme from hierarchy list
+
+local schemes = {
+	"carbonfox",
+	"habamax"
+}
+
+vim.cmd("set background=dark")
+
+set_color(schemes)
