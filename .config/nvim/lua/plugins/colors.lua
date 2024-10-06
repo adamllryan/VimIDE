@@ -1,5 +1,5 @@
 return {
-		"EdenEast/nightfox.nvim",
-		lazy = false,
-		name = "nightfox",
-	}
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    name = "nightfox",
+}

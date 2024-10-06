@@ -6,23 +6,23 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 map("i", "<S-CR>", function()
-	if require("copilot.suggestion").is_visible() then
-		require("copilot.suggestion").accept_line()
-		print("Accepted suggestion")
-	end
+    if require("copilot.suggestion").is_visible() then
+        require("copilot.suggestion").accept_line()
+        print("Accepted suggestion")
+    end
 end, "Accept copilot suggestion")
 
 map("n", "<C-/>", "<cmd>nohlsearch<cr>", "Clear last search")
 
 vim.g.neovide_scale_factor = 1.0
 local change_scale_factor = function(delta)
-	vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
 end
 map("n", "<C-=>", function()
-	change_scale_factor(1.1)
+    change_scale_factor(1.1)
 end, "Increase scale factor")
 map("n", "<C-->", function()
-	change_scale_factor(0.9)
+    change_scale_factor(0.9)
 end, "Decrease scale factor")
 
 map("n", "<leader>ga", "<cmd>Git add %<cr>", "Stage the current file")
@@ -33,3 +33,16 @@ map({ "n", "v" }, "<tab>", "<cmd>Neotree toggle float last<cr>", "Toggle file ex
 map("n", "t", "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle terminal")
 map("t", "<esc>", "<C-\\><C-n>", "Exit terminal mode")
 map({ "t", "n" }, "<C-\\>", "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal")
+
+-- experimental
+
+vim.keymap.set("n", "<C-t>", function()
+    require("menu").open("default")
+end, {})
+
+vim.keymap.set("n", "<RightMouse>", function()
+    vim.cmd.exec '"normal! \\<RightMouse>"'
+
+    local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+    require("menu").open(options, { mouse = true })
+end, {})
