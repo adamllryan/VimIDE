@@ -6,6 +6,7 @@ return {
                 options = {
                     theme = vim.g.colors_name,
                     component_separators = "",
+                    globalstatus = true,
                     section_separators = { left = "", right = "" },
                     disabled_filetypes = {
                         statusline = {},
@@ -15,14 +16,14 @@ return {
                 },
                 sections = {
                     lualine_a = {
-                        "mode",
-                    },
-                    lualine_b = {
                         {
-                            "branch",
+                            "mode",
                             separator = { left = "" },
                             right_padding = 2,
                         },
+                    },
+                    lualine_b = {
+                        "branch"
                     },
                     lualine_c = { "diff", { "filename", file_status = true, path = 1 } },
                     lualine_x = {
