@@ -15,12 +15,12 @@ map("v", ">", ">gv")
 
 -- Copilot keybinds
 
-map("i", "<S-CR>", function()
-    if require("copilot.suggestion").is_visible() then
-        require("copilot.suggestion").accept_line()
-        print("Accepted suggestion")
-    end
-end, "Accept copilot suggestion")
+-- map("i", "<S-CR>", function()
+--     if require("copilot.suggestion").is_visible() then
+--         require("copilot.suggestion").accept_line()
+--         print("Accepted suggestion")
+--     end
+-- end, "Accept copilot suggestion")
 
 -- Clear highlights after search
 

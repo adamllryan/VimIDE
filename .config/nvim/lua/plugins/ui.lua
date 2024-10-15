@@ -120,23 +120,23 @@ return {
                 vim.api.nvim_set_hl(0, "RainbowOrangeFg", { fg = "#D19A66" })
                 vim.api.nvim_set_hl(0, "RainbowGreenFg", { fg = "#98C379" })
                 vim.api.nvim_set_hl(0, "RainbowVioletFg", { fg = "#C678DD" })
-                vim.api.nvim_set_hl(0, "RainbowCyanFg", { fg = "#56B6C2" })
+                vim.api.nvim_set_hl(0, "RainbowCyanFg", { fg = "#00FFFF" })
 
                 vim.api.nvim_set_hl(0, "RainbowRedBg", { fg = "#70363B" })
                 vim.api.nvim_set_hl(0, "RainbowYellowBg", { fg = "#73603E" })
                 vim.api.nvim_set_hl(0, "RainbowBlueBg", { fg = "#4C623D" })
                 vim.api.nvim_set_hl(0, "RainbowOrangeBg", { fg = "#2B5B61" })
-                vim.api.nvim_set_hl(0, "RainbowGreenBg", { fg = "#98C379" })
-                vim.api.nvim_set_hl(0, "RainbowVioletBg", { fg = "#315878" })
-                vim.api.nvim_set_hl(0, "RainbowCyanBg", { fg = "#633C6F" })
+                vim.api.nvim_set_hl(0, "RainbowGreenBg", { fg = "#315878" })
+                vim.api.nvim_set_hl(0, "RainbowVioletBg", { fg = "#633C6F" })
+                vim.api.nvim_set_hl(0, "RainbowCyanBg", { fg = "#008888" })
             end)
 
-            vim.g.rainbow_delimiters = { highlight = highlightFg }
+            --vim.g.rainbow_delimiters = { highlight = highlightFg }
             require("ibl").setup({
                 indent = { highlight = highlightBg },
-                scope = { highlight = highlightFg },
+                --scope = { highlight = highlightFg },
             })
-            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+            -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
         end,
     },
 
