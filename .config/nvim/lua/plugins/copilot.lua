@@ -1,6 +1,5 @@
 local use_local = false
 local debounce = 75
-local accept_keymap = "<S-CR>"
 
 if use_local then
     return {
@@ -18,7 +17,6 @@ if use_local then
                     max_new_tokens = 15
                 }
             },
-            accept_keymap = accept_keymap,
             debounce = debounce,
 
         }
@@ -39,9 +37,6 @@ else
                 auto_trigger = true,
                 accept = false,
                 debounce = debounce,
-                keymap = {
-                    accept = accept_keymap,
-                }
             },
             filetypes = {
                 ["."] = true,

@@ -1,4 +1,4 @@
-local map = require('keys').map
+local map = require("keys").map
 
 -- Lazy keybinds
 
@@ -15,12 +15,40 @@ map("v", ">", ">gv")
 
 -- Copilot keybinds
 
--- map("i", "<S-CR>", function()
---     if require("copilot.suggestion").is_visible() then
---         require("copilot.suggestion").accept_line()
---         print("Accepted suggestion")
---     end
--- end, "Accept copilot suggestion")
+local copilot = pcall(require, "copilot")
+
+if copilot then
+	map("i", "<S-CR>", function()
+		if require("copilot.suggestion").is_visible() then
+			require("copilot.suggestion").accept_line()
+			print("Accepted suggestion")
+		end
+	end, "Accept copilot suggestion")
+end
+
+local localCopilot = pcall(require, "llm")
+
+if localCopilot then
+    map("i", "<S-CR>", require("llm").complete, "Accept copilot suggestion")
+end
+
+-- Harpoon bindings
+
+local harpoon = require("harpoon")
+
+map("n", "<leader>a", function() harpoon:list():add() end, "Add current file to Harpoon")
+map("n", "<leader>A", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, "Toggle Harpoon menu")
+
+map("n", "<leader>1", function() harpoon:list():select(1) end, "Select Harpoon list 1")
+map("n", "<leader>2", function() harpoon:list():select(2) end, "Select Harpoon list 2")
+map("n", "<leader>3", function() harpoon:list():select(3) end, "Select Harpoon list 3")
+map("n", "<leader>4", function() harpoon:list():select(4) end, "Select Harpoon list 4")
+map("n", "<leader>5", function() harpoon:list():select(5) end, "Select Harpoon list 5")
+
+-- Toggle previous & next buffers stored within Harpoon list
+
+map("n", "<C-S-P>", function() harpoon:list():prev() end)
+map("n", "<C-S-N>", function() harpoon:list():next() end)
 
 -- Clear highlights after search
 
@@ -30,13 +58,13 @@ map("n", "<C-/>", "<cmd>nohlsearch<cr>", "Clear last search")
 
 vim.g.neovide_scale_factor = 1.0
 local change_scale_factor = function(delta)
-    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+	vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
 end
 map("n", "<C-=>", function()
-    change_scale_factor(1.1)
+	change_scale_factor(1.1)
 end, "Increase scale factor")
 map("n", "<C-->", function()
-    change_scale_factor(0.9)
+	change_scale_factor(0.9)
 end, "Decrease scale factor")
 
 -- Neotree keybinds
@@ -71,13 +99,12 @@ map("n", "<S-h>", ":bprevious<CR>", "Previous tab")
 -- Menu keybinds
 
 vim.keymap.set("n", "<C-t>", function()
-    require("menu").open("default")
+	require("menu").open("default")
 end, {})
 
 vim.keymap.set("n", "<RightMouse>", function()
-    vim.cmd.exec '"normal! \\<RightMouse>"'
+	vim.cmd.exec('"normal! \\<RightMouse>"')
 
-    local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
-    require("menu").open(options, { mouse = true })
+	local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+	require("menu").open(options, { mouse = true })
 end, {})
-
