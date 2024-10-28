@@ -8,10 +8,6 @@ local function get_if_available(names)
 	return "default"
 end
 
-local function set_color(schemes)
-	vim.cmd.colorscheme(get_if_available(schemes))
-end
-
 -- Set colorscheme from hierarchy list
 
 local schemes = {
@@ -20,4 +16,4 @@ local schemes = {
 
 vim.cmd("set background=dark")
 
-set_color(schemes)
+vim.cmd.colorscheme(get_if_available(schemes))
