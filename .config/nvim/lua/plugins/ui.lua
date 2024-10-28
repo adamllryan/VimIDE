@@ -129,8 +129,6 @@ return {
             require("ibl").setup({
                 indent = {
                     highlight = highlight,
-                    tab_char = "|",
-                    repeat_linebreak = false,
                 },
             })
         end,
