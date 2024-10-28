@@ -1,15 +1,23 @@
 -- LSP Configuration & Plugins
 return {
     {
+        "williamboman/mason-lspconfig.nvim",
+        requires = {
+            "neovim/nvim-lspconfig",
+            "williamboman/mason.nvim",
+        },
+        opts = {
+            automatic_installation = true,
+        }
+    },
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
             "j-hui/fidget.nvim",
             "folke/neodev.nvim",
             "RRethy/vim-illuminate",
             "hrsh7th/cmp-nvim-lsp",
-
+            "williamboman/mason.nvim"
         },
         config = function()
             local keymap = require("keys")
@@ -142,4 +150,7 @@ return {
             })
         end,
     },
+    {
+        'mhartington/formatter.nvim',
+    }
 }

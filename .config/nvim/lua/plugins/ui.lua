@@ -23,7 +23,7 @@ return {
                         },
                     },
                     lualine_b = {
-                        "branch"
+                        "branch",
                     },
                     lualine_c = { "diff", { "filename", file_status = true, path = 1 } },
                     lualine_x = {
@@ -51,7 +51,21 @@ return {
             })
         end,
     },
-    { "rcarriga/nvim-notify" },
+    {
+        "rcarriga/nvim-notify",
+        config = function()
+            require("notify").setup({
+                timeout = 3000,
+                render = "minimal",
+                stages = "slide",
+            })
+            vim.notify = require("notify")
+        end,
+        opts = {
+            timeout = 3000,
+            render = "compact",
+        }
+    },
     {
         "akinsho/bufferline.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
@@ -91,53 +105,44 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            local highlightBg = {
-                "RainbowRedBg",
-                "RainbowYellowBg",
-                "RainbowBlueBg",
-                "RainbowOrangeBg",
-                "RainbowGreenBg",
-                "RainbowVioletBg",
-                "RainbowCyanBg",
+            local highlight = {
+                "RainbowRed",
+                "RainbowYellow",
+                "RainbowBlue",
+                "RainbowOrange",
+                "RainbowGreen",
+                "RainbowViolet",
+                "RainbowCyan",
             }
-
-            local highlightFg = {
-                "RainbowRedFg",
-                "RainbowYellowFg",
-                "RainbowBlueFg",
-                "RainbowOrangeFg",
-                "RainbowGreenFg",
-                "RainbowVioletFg",
-                "RainbowCyanFg",
-            }
-
 
             local hooks = require("ibl.hooks")
             hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-                vim.api.nvim_set_hl(0, "RainbowRedFg", { fg = "#E06C75" })
-                vim.api.nvim_set_hl(0, "RainbowYellowFg", { fg = "#E5C07B" })
-                vim.api.nvim_set_hl(0, "RainbowBlueFg", { fg = "#61AFEF" })
-                vim.api.nvim_set_hl(0, "RainbowOrangeFg", { fg = "#D19A66" })
-                vim.api.nvim_set_hl(0, "RainbowGreenFg", { fg = "#98C379" })
-                vim.api.nvim_set_hl(0, "RainbowVioletFg", { fg = "#C678DD" })
-                vim.api.nvim_set_hl(0, "RainbowCyanFg", { fg = "#00FFFF" })
-
-                vim.api.nvim_set_hl(0, "RainbowRedBg", { fg = "#70363B" })
-                vim.api.nvim_set_hl(0, "RainbowYellowBg", { fg = "#73603E" })
-                vim.api.nvim_set_hl(0, "RainbowBlueBg", { fg = "#4C623D" })
-                vim.api.nvim_set_hl(0, "RainbowOrangeBg", { fg = "#2B5B61" })
-                vim.api.nvim_set_hl(0, "RainbowGreenBg", { fg = "#315878" })
-                vim.api.nvim_set_hl(0, "RainbowVioletBg", { fg = "#633C6F" })
-                vim.api.nvim_set_hl(0, "RainbowCyanBg", { fg = "#008888" })
+                vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#70363B" })
+                vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#73603E" })
+                vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#4C623D" })
+                vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#2B5B61" })
+                vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#315878" })
+                vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#633C6F" })
+                vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#008888" })
             end)
 
-            --vim.g.rainbow_delimiters = { highlight = highlightFg }
             require("ibl").setup({
-                indent = { highlight = highlightBg },
-                --scope = { highlight = highlightFg },
+                indent = {
+                    highlight = highlight,
+                    tab_char = "|",
+                    repeat_linebreak = false,
+                },
             })
-            -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
         end,
     },
-
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+        },
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
+    }
 }

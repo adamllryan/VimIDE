@@ -3,7 +3,7 @@ local debounce = 75
 
 if use_local then
     return {
-        'huggingface/llm.nvim',
+        "huggingface/llm.nvim",
         opts = {
             backend = "ollama",
             model = "deepseek-coder",
@@ -14,12 +14,11 @@ if use_local then
                 options = {
                     temperature = 0.2,
                     top_p = 0.95,
-                    max_new_tokens = 15
-                }
+                    max_new_tokens = 15,
+                },
             },
             debounce = debounce,
-
-        }
+        },
     }
 else
     return {
